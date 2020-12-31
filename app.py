@@ -44,7 +44,7 @@ async def whatabout(ctx):
             rsp = requests.get("https://api.datamuse.com/words?rel_jjb=person")
             adjectives = rsp.json()
             adj = random.choice(adjectives)
-            await ctx.channel.send(f"{tagged_user} is a {adj} person")
+            await ctx.channel.send(f"{tagged_user} is a {adj['word']} person")
         else:
             await ctx.channel.send(f"{tagged_user} is my ortaam.")
     else:
