@@ -39,11 +39,11 @@ async def x(message):
 async def whatabout(ctx):
     if "@" in ctx.message.content:
         randint = random.randint(0,2)
+        tagged_user = ctx.message.content.split()[1]
         if randint == 0:
             rsp = requests.get("https://api.datamuse.com/words?rel_jjb=person")
             adjectives = rsp.json()
             adj = random.choice(adjectives)
-            tagged_user = ctx.message.content.split()[1]
             await ctx.channel.send(f"{tagged_user} is a {adj} person")
         else:
             await ctx.channel.send(f"{tagged_user} is my ortaam.")
