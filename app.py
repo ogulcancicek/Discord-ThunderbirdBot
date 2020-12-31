@@ -46,7 +46,6 @@ async def whatabout(ctx):
             tagged_user = ctx.message.content.split()[1]
             await ctx.channel.send(f"{tagged_user} is a {adj} person")
         else:
-            adj = random.choice(l)
             await ctx.channel.send(f"{tagged_user} is my ortaam.")
     else:
         await ctx.channel.send(f"{ctx.guild.mention} please tag someone after !whatabout command!!")
