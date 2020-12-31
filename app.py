@@ -1,7 +1,7 @@
 import os
 import discord
 from discord.ext import commands
-import random
+import random,requests,json
 import asyncio
 
 bot = commands.Bot(command_prefix="!",description="ThunderbirdBot")
@@ -38,13 +38,16 @@ async def x(message):
 @bot.command()
 async def whatabout(ctx):
     if "@" in ctx.message.content:
-        tagged_user = ctx.message.content.split()[1]
-        l = ["Ağır katman","sik kafalı","Ortaam"]
-        adj = random.choice(l)
-        if adj == l[2]:
-            await ctx.channel.send(f"{tagged_user} is my {adj}")
-        else:
+        randint = random.randint(0,2)
+        if randint == 0:
+            rsp = requests.get("https://api.datamuse.com/words?rel_jjb=person")
+            adjectives = rsp.json()
+            adj = random.choice(adjectives)
+            tagged_user = ctx.message.content.split()[1]
             await ctx.channel.send(f"{tagged_user} is a {adj} person")
+        else:
+            adj = random.choice(l)
+            await ctx.channel.send(f"{tagged_user} is my ortaam.")
     else:
         await ctx.channel.send(f"{ctx.guild.mention} please tag someone after !whatabout command!!")
 
