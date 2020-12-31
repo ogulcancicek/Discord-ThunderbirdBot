@@ -9,8 +9,6 @@ bot = commands.Bot(command_prefix="!",description="ThunderbirdBot")
 @bot.event
 async def on_ready():
     print(f"You're logged in as {bot.user}")
-    main_channel = bot.get_channel(141618596462854145)
-    await main_channel.send("Here we go guys! I'm ready for duty.")
     await bot.change_presence(activity=discord.Game("Type !helpme"))
 
 @bot.event
@@ -101,6 +99,10 @@ async def kick(ctx,member:discord.Member,reason=None):
     else:
         await member.kick(reason=reason)
         await ctx.channel.send(f"> {member.display_name} has been kicked.")
+
+@bot.command()
+async def year2020(ctx):
+    await ctx.channel.send(f"> 2020 yılının anasını sikim. {ctx.author.mention} Sana bi' şey olmasın ortaam. ")
 
 @bot.command()
 async def helpme(ctx):
